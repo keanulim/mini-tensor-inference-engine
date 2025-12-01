@@ -12,8 +12,11 @@ class Tensor {
 private:
     std::vector<T> data;
     std::vector<int64_t> shape;
+    std::vector<int64_t> strides;
+    void compute_strides();
 public:
     int64_t size() const;
+
 
 };
 

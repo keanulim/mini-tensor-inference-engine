@@ -11,3 +11,15 @@ int64_t Tensor<T>::size() const{
     return total;
 
 }
+
+template<typename T>
+void Tensor<T>::compute_strides() {
+    for (int i = shape.size()-1; i > 0; i--) {
+        if (i == shape.size()-1) {
+            strides[i] = 1;
+        }
+        else {
+            strides[i] = shape[i+1] * strides[i+1];
+        }
+    }
+}
