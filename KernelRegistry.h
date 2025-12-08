@@ -9,6 +9,15 @@
 #include <string>
 #include "types.h"
 
+#define REGISTER_KERNEL(op_name, kernel_func) \
+    namespace { \
+        struct Register_##op_name { \
+            Register_##op_name() { \
+                KernelRegistry::register_kernel(#op_name, kernel_func); \
+            } \
+        }; \
+        static Register_##op_name global_register_##op_name; \
+    }
 
 class KernelRegistry {
 private:
